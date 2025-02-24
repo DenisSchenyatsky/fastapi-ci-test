@@ -1,15 +1,13 @@
+import logging
+from contextlib import asynccontextmanager
 from typing import List
-
-from fastapi import FastAPI
-from sqlalchemy.future import select
-from sqlalchemy import desc
 
 import models
 import schemas
 from database import engine, session
-
-from contextlib import asynccontextmanager
-import logging
+from fastapi import FastAPI
+from sqlalchemy import desc
+from sqlalchemy.future import select
 
 logging.basicConfig(level=logging.INFO)
 
