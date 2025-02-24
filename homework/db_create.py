@@ -1,6 +1,6 @@
 import sqlite3
 
-txt ="""-- Рецепты
+txt = """-- Рецепты
 CREATE TABLE IF NOT EXISTS recipes (
 id integer PRIMARY KEY,
 name text NOT NULL,
