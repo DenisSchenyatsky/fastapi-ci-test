@@ -6,29 +6,36 @@ client = TestClient(app)
 
 id_arr = []
 
+
 def test_create_recipe():
-    responce = client.post("/recipes", headers={"X-Token": "coneofsilence"}, json = {"name": "bludo number one1",
-                                                                                     "time_spent": "1 minute",
-                                                                                     "description": "mix and eat",
-                                                                                     "products": [{"name": "icecream"},
-                                                                                                  {"name": "cakao"},
-                                                                                                  {"name": "zefir1"}]})
+    responce = client.post(
+        "/recipes",
+        headers={"X-Token": "coneofsilence"},
+        json={
+            "name": "bludo number one1",
+            "time_spent": "1 minute",
+            "description": "mix and eat",
+            "products": [{"name": "icecream"}, {"name": "cakao"}, {"name": "zefir1"}],
+        },
+    )
+
 
 def test_read_all_recipes():
     response = client.get("/recipes", headers={"X-Token": "coneofsilence"})
     assert response.status_code == 200
     response_data = response.json()
     assert isinstance(response_data, list)
-    
+
     for d in response_data:
         assert isinstance(d, dict)
         assert isinstance(d["id"], int)
         assert isinstance(d["name"], str)
         assert isinstance(d["watched_count"], int)
-        assert isinstance(d["time_spent"], str)        
+        assert isinstance(d["time_spent"], str)
         id_arr.append(d["id"])
 
-def test_read_recipes_by_one():    
+
+def test_read_recipes_by_one():
     for idx in id_arr:
         response = client.get(f"/recipes{idx}", headers={"X-Token": "coneofsilence"})
         assert response.status_code == 200
