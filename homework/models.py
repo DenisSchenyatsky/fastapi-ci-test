@@ -1,14 +1,11 @@
-from sqlalchemy import String, Integer, ForeignKey
-from sqlalchemy.orm import mapped_column, relationship, Mapped
-from sqlalchemy.ext.associationproxy import association_proxy, AssociationProxy
-
-from sqlalchemy.future import select
-
+import logging
 from typing import List
 
 from database import Base, session
-
-import logging
+from sqlalchemy import ForeignKey, Integer, String
+from sqlalchemy.ext.associationproxy import AssociationProxy, association_proxy
+from sqlalchemy.future import select
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 logging.basicConfig(level=logging.INFO)
 
